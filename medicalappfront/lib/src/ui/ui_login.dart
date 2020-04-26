@@ -81,7 +81,7 @@ class HomePageState extends State<HomePage> {
                           margin: EdgeInsets.only(top: 50),
                           child: Center(
                             child: Text(
-                              "HemoSugar",
+                              "MedicalApp",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,

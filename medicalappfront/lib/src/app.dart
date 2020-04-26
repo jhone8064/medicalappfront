@@ -18,7 +18,7 @@ class App extends StatelessWidget {
         stream: authBloc.isSessionValid,
         builder: (context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData && snapshot.data) {
-            return HomeScreen();
+            return BottomNavBar();
           }
           return HomePage();
         });
