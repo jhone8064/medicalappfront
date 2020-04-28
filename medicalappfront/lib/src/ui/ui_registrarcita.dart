@@ -3,11 +3,11 @@ import 'package:medicalappfront/src/blocs/Registrarcita_bloc.dart';
 import 'Animation/FadeAnimation.dart';
 
 class RegistrarCita extends StatelessWidget {
-  RegistrarCitaBloc registrarCitaBloc;
+  final RegistrarCitaBloc _registrarCitaBloc = RegistrarCitaBloc();
 
   @override
   Widget build(BuildContext context) {
-    registrarCitaBloc = RegistrarCitaBloc();
+    
     return Scaffold(
       backgroundColor: Color.fromRGBO(143, 148, 251, 2),
       appBar: new AppBar(
@@ -41,17 +41,32 @@ class RegistrarCita extends StatelessWidget {
                           ),
                         )),
                   ),
+                  Positioned(
+                    right: 167,
+                    top: 2,
+                    width: 80,
+                    height: 150,
+                    child: FadeAnimation(
+                        1.5,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/regis2.png'))),
+                        )),
+                  ),
               ],
             ),
           ),
           SizedBox(height: 20.0),
-          cedulaTextField(registrarCitaBloc),
+          cedulaTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          telefonoTextField(registrarCitaBloc),
+          telefonoTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          motivoTextField(registrarCitaBloc),
+          motivoTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          registrarButton(registrarCitaBloc, context),
+          registrarButton(_registrarCitaBloc, context),
           SizedBox(height: 15.0)          
         ],
       )

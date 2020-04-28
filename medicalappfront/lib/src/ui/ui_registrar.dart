@@ -3,11 +3,11 @@ import 'package:medicalappfront/src/blocs/Registrar_bloc.dart';
 import 'Animation/FadeAnimation.dart';
 
 class Registrar extends StatelessWidget {
-  RegistrarBloc registrarBloc;
+  final RegistrarBloc _registrarBloc= RegistrarBloc();
 
   @override
   Widget build(BuildContext context) {
-    registrarBloc = RegistrarBloc();
+    
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: new AppBar(
@@ -41,21 +41,36 @@ class Registrar extends StatelessWidget {
                           ),
                         )),
                   ),
+                  Positioned(
+                    right: 167,
+                    top: 10,
+                    width: 80,
+                    height: 150,
+                    child: FadeAnimation(
+                        1.5,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/logo3.png'))),
+                        )),
+                  ),
               ],
             ),
           ),
           SizedBox(height: 20.0),
-          cedulaTextField(registrarBloc),
+          cedulaTextField(_registrarBloc),
           SizedBox(height: 25.0),
-          nombresTextField(registrarBloc),
+          nombresTextField(_registrarBloc),
           SizedBox(height: 25.0),
-          apellidosTextField(registrarBloc),
+          apellidosTextField(_registrarBloc),
           SizedBox(height: 25.0),
-          usernameTextField(registrarBloc),
+          usernameTextField(_registrarBloc),
           SizedBox(height: 25.0),
-          passwordTextField(registrarBloc),
+          passwordTextField(_registrarBloc),
           SizedBox(height: 15.0),
-          registrarButton(registrarBloc, context),
+          registrarButton(_registrarBloc, context),
           SizedBox(height: 15.0)          
         ],
       )

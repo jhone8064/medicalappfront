@@ -75,6 +75,21 @@ class HomePageState extends State<HomePage> {
                         )),
                   ),
                   Positioned(
+                    right: 167,
+                    top: 300,
+                    width: 80,
+                    height: 150,
+                    child: FadeAnimation(
+                        1.5,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/logo4.png'))),
+                        )),
+                  ),
+                  Positioned(
                     child: FadeAnimation(
                         1.6,
                         Container(
