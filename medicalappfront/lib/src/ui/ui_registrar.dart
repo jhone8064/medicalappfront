@@ -88,12 +88,13 @@ Widget cedulaTextField(RegistrarBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.number,
           onChanged: bloc.changeCedula,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese su Cedula',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Cedula',
-              prefixIcon: Icon(Icons.perm_identity),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -107,12 +108,13 @@ Widget nombresTextField(RegistrarBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.text,
           onChanged: bloc.changeNombre,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese sus Nombres',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Nombres',
-              prefixIcon: Icon(Icons.supervised_user_circle),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -126,12 +128,13 @@ Widget apellidosTextField(RegistrarBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.text,
           onChanged: bloc.changeApellidos,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese sus Apellidos',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Apellidos',
-              prefixIcon: Icon(Icons.supervised_user_circle),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -145,12 +148,13 @@ Widget usernameTextField(RegistrarBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.emailAddress,
           onChanged: bloc.changeUsername,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Email',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'user@correo.com',
-              prefixIcon: Icon(Icons.email),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.email, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -164,13 +168,15 @@ Widget passwordTextField(RegistrarBloc bloc) => StreamBuilder<String>(
         obscureText: true,
         onChanged: bloc.changePassword,
         decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: 'Password',
+            labelStyle: TextStyle(color: Colors.white),
             hintText: 'Password',
-            prefixIcon: Icon(Icons.vpn_key),
+            prefixIcon: Icon(Icons.vpn_key, color: Colors.white),
             errorText: snap.error,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)))
+                ),
       );
     });
 

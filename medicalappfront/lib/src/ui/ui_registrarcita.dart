@@ -84,12 +84,13 @@ Widget cedulaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.number,
           onChanged: bloc.changeCedula,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese su Cedula',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Cedula',
-              prefixIcon: Icon(Icons.perm_identity),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -103,12 +104,13 @@ Widget telefonoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.number,
           onChanged: bloc.changeTelefono,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese su numero telefonico',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Telefono',
-              prefixIcon: Icon(Icons.phone),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.phone, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -122,12 +124,13 @@ Widget motivoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
           keyboardType: TextInputType.text,
           onChanged: bloc.changeMotivo,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Ingrese el motivo de la cita medica',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'Motivo',
-              prefixIcon: Icon(Icons.local_hospital),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.local_hospital, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );

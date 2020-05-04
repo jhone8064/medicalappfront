@@ -95,11 +95,12 @@ Widget cedulaTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: snap.data.cedula,
-            prefixIcon: Icon(Icons.perm_identity),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32.0),
+            labelStyle: TextStyle(color: Colors.white),
+            prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
             errorText: snap.error,
             alignLabelWithHint: true,
@@ -114,11 +115,12 @@ Widget nombresTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: snap.data.nombres,              
-              prefixIcon: Icon(Icons.supervised_user_circle),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              labelText: snap.data.nombres,
+              labelStyle: TextStyle(color: Colors.white),              
+              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               errorText: snap.error),
         );
@@ -131,11 +133,12 @@ Widget apellidosTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: snap.data.apellidos,              
-              prefixIcon: Icon(Icons.supervised_user_circle),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              labelText: snap.data.apellidos,
+              labelStyle: TextStyle(color: Colors.white),              
+              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
@@ -148,11 +151,12 @@ Widget usernameTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: snap.data.username,              
-              prefixIcon: Icon(Icons.email),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              labelText: snap.data.username,
+              labelStyle: TextStyle(color: Colors.white),              
+              prefixIcon: Icon(Icons.email, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
