@@ -42,7 +42,7 @@ class LoginBloc extends Validators {
     _loadingData.sink.add(false);
    
     if (apiresponse.data != null) {
-      AuthResponse authResponse = AuthResponse.fromJson(jsonDecode(apiresponse.data));
+      AuthResponse authResponse = AuthResponse.fromJson(jsonDecode(apiresponse.data)['data']);
       if (authResponse.accessToken != null &&
           authResponse.accessToken.length > 0) {
         authBloc.openSession(authResponse);

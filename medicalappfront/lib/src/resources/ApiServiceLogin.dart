@@ -20,7 +20,7 @@ class ApiLogin {
 
   Future<ApiResponse> login(UserData userData) async {
     var body = jsonEncode(userData.toJson());    
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.urlAuth);
+    Uri uri = Uri.https(Constants.urlAuthority, Constants.urlAuth);
 
     var res = await client.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contentTypeJson},
@@ -37,7 +37,7 @@ class ApiLogin {
 
    Future<ApiResponse> registrar(UserRegisData userData) async {
     var body = jsonEncode(userData.toJson());
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.urlRegi);
+    Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegi);
    
     var res = await client.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contentTypeJson},
@@ -55,7 +55,7 @@ class ApiLogin {
  
  Future<ApiResponse> registrarCita(UserRegisCita userRegisCita) async {
     var body = jsonEncode(userRegisCita.toJson());
-    Uri uri = Uri.http(Constants.urlAuthority, Constants.urlRegi);
+    Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegi);
    
     var res = await client.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contentTypeJson},
@@ -71,7 +71,7 @@ class ApiLogin {
   }
 
   Future<UserRegisData> infoUser(String id) async {        
-    var res = await client.get('https://'+Constants.urlAuthority+'/api/auth/infoUser?id='+id);       
+    var res = await client.get('https://'+Constants.urlAuthority+'/infoUser?id='+id);       
     if (res.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
       _userRegisData = UserRegisData.fromJson(jsonDecode(res.body));            
