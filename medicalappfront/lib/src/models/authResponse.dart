@@ -2,7 +2,7 @@ class AuthResponse {
   String accessToken;
   String prefix;
   String message;
-  int id;
+  String id;
   String username;
 
   AuthResponse({this.id, this.username, this.accessToken, this.prefix});
