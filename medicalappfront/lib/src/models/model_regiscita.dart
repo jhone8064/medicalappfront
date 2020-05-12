@@ -1,27 +1,39 @@
 class UserRegisCita {
   String cedula;
-  String telefono;
+  String numero;
   String motivo;
+  String fecha;
+  String id;
+ // String hora;
   
 
   UserRegisCita(
       {this.cedula,
-      this.telefono,
-      this.motivo
+      this.numero,
+      this.motivo,
+      this.fecha,
+      this.id
+//this.hora
       });
 
   factory UserRegisCita.fromJson(Map<String, dynamic> json) {
     return UserRegisCita(
         cedula: json['cedula'],
-        telefono: json['telefono'],
-        motivo: json['motivo']
+        numero: json['numero'],
+        motivo: json['motivo'],
+        fecha: json['fecha']        
+      //  hora: json['hora']
+        
         );
   }
 
   Map<String, dynamic> toJson() => {
         "cedula": cedula,
-        "telefono": telefono,
-        "motivo": motivo
+        "numero": numero,
+        "motivo": motivo,
+        "fecha": fecha,
+        "id":id
+        //"hora": hora
         
       };
 }

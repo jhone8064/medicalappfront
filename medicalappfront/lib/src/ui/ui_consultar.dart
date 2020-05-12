@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:medicalappfront/src/ui/citas_screen.dart';
 import 'package:medicalappfront/src/ui/ui_consultarcita.dart';
+//import 'package:medicalappfront/src/ui/ui_infocita.dart';
 import 'package:medicalappfront/src/ui/ui_registrarcita.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -16,6 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final RegistrarCita _listRegistrarCita = RegistrarCita();
   final HomeScreen _listConsultarCita = HomeScreen();
+  final ProductsScreen _listInfoCita = ProductsScreen();
 
   Widget _showPage = new RegistrarCita();
 
@@ -27,9 +30,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 1:
         return _listConsultarCita;
         break;
-      //case 2:
-      //return;
-      //break;
+      case 2:
+      return _listInfoCita;
+      break;
       default:
         return new Container(
           child: new Center(
@@ -53,7 +56,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: <Widget>[
             Icon(Icons.add, size: 30),
             Icon(Icons.search, size: 30),
+            Icon(Icons.search, size: 30),
             Icon(Icons.exit_to_app, size: 30),
+            
           ],
           color: Colors.black,
           buttonBackgroundColor: Colors.black,

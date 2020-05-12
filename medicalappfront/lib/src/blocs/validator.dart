@@ -1,5 +1,7 @@
 import 'dart:async';
 
+
+
 class Validators {
   final validateEmail = StreamTransformer<String, String>.fromHandlers(
       handleData: (username, skin) {
@@ -45,5 +47,15 @@ class Validators {
       skin.addError("Error al ingresar Los Apellidos.");
     }
   });
+
+ /* final validateDate = StreamTransformer<DateTime, DateTime>.fromHandlers(
+    handleData: (fecha, skin) {
+      if(fecha == true){
+        skin.add(fecha);
+      }else{
+        skin.addError("error al ingresar la fecha");
+      }
+    }
+  );*/
 
 }

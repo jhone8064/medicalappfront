@@ -46,7 +46,7 @@ class Consultas extends State<HomeScreen> {
                           margin: EdgeInsets.only(top: 50),
                           child: Center(
                             child: Text(
-                              "Consultar citas",
+                              "Consultar Paciente",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,
