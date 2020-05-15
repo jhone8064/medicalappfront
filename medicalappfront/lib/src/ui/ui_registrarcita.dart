@@ -18,7 +18,7 @@ class RegistrarCita extends StatelessWidget {
               child: Column(
         children: <Widget>[
           Container(
-            height: 250,
+            height: 200,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/images/background.png'),
@@ -29,7 +29,7 @@ class RegistrarCita extends StatelessWidget {
                     child: FadeAnimation(
                         1.6,
                         Container(
-                          margin: EdgeInsets.only(top: 50),
+                          margin: EdgeInsets.only(top: 100),
                           child: Center(
                             child: Text(
                               "Registrar citas",
@@ -66,6 +66,10 @@ class RegistrarCita extends StatelessWidget {
           SizedBox(height: 25.0),
           motivoTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
+          fechaTextField(_registrarCitaBloc),
+          SizedBox(height: 25.0),
+          //horaTextField(_registrarCitaBloc),
+          //SizedBox(height: 25.0),
           registrarButton(_registrarCitaBloc, context),
           SizedBox(height: 15.0)          
         ],
@@ -98,11 +102,11 @@ Widget cedulaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
     );
 
 Widget telefonoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
-      stream: bloc.telefono,
+      stream: bloc.numero,
       builder: (context, snap) {
         return TextField(
           keyboardType: TextInputType.number,
-          onChanged: bloc.changeTelefono,
+          onChanged: bloc.changeNumero,
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -136,6 +140,46 @@ Widget motivoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
         );
       },
     );
+
+    Widget fechaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.fecha,
+      builder: (context, snap) {
+        return TextField(
+          keyboardType: TextInputType.text,
+          onChanged: bloc.changeFecha,
+          decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              labelText: 'Ingrese la fecha de la cita',
+              labelStyle: TextStyle(color: Colors.white),
+              hintText: 'Fecha',
+              prefixIcon: Icon(Icons.date_range, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
+              ),
+              errorText: snap.error),
+        );
+      },
+    );
+
+   /* Widget horaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.hora,
+      builder: (context, snap) {
+        return TextField(
+          keyboardType: TextInputType.text,
+          onChanged: bloc.changeHora,
+          decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              labelText: 'Ingrese la hora de la cita medica',
+              labelStyle: TextStyle(color: Colors.white),
+              hintText: 'Hora',
+              prefixIcon: Icon(Icons.hourglass_empty, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
+              ),
+              errorText: snap.error),
+        );
+      },
+    );*/
 
 
 

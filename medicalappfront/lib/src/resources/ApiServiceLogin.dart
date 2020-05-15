@@ -16,6 +16,8 @@ class ApiLogin {
   Client client = Client();
   ApiResponse _apiResponse;
   UserRegisData _userRegisData;
+  //UserRegisCita _userRegisCita;
+ //final _listaCita = List<UserRegisCita>();
   
 
   Future<ApiResponse> login(UserData userData) async {
@@ -55,7 +57,7 @@ class ApiLogin {
  
  Future<ApiResponse> registrarCita(UserRegisCita userRegisCita) async {
     var body = jsonEncode(userRegisCita.toJson());
-    Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegi);
+    Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegisCita);
    
     var res = await client.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contentTypeJson},
@@ -80,5 +82,16 @@ class ApiLogin {
     }
     return _userRegisData;
   }
+
+  /*Future<UserRegisCita> infoCita(String id) async {        
+    var res = await client.get('https://'+Constants.urlAuthority+'/infoCita?cedula='+id);       
+    if (res.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      _userRegisCita = UserRegisCita.fromJson(jsonDecode(res.body));            
+    } else {
+      _userRegisCita = UserRegisCita.fromJson(jsonDecode(res.body));
+    }
+    return _userRegisCita;
+  }*/
   
 }
