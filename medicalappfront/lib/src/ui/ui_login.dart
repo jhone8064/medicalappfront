@@ -75,13 +75,28 @@ class HomePageState extends State<HomePage> {
                         )),
                   ),
                   Positioned(
+                    right: 167,
+                    top: 300,
+                    width: 80,
+                    height: 150,
+                    child: FadeAnimation(
+                        1.5,
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/logo4.png'))),
+                        )),
+                  ),
+                  Positioned(
                     child: FadeAnimation(
                         1.6,
                         Container(
                           margin: EdgeInsets.only(top: 50),
                           child: Center(
                             child: Text(
-                              "HemoSugar",
+                              "MedicalApp",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,
@@ -124,16 +139,20 @@ Widget usernameTextField(LoginBloc bloc) => StreamBuilder<String>(
       stream: bloc.username,
       builder: (context, snap) {
         return TextField(
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
           keyboardType: TextInputType.emailAddress,
           onChanged: bloc.changeUsername,
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: 'Email',
+              labelStyle: TextStyle(color: Colors.white),
               hintText: 'user@correo.com',
-              prefixIcon: Icon(Icons.email),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32.0),
+              prefixIcon: Icon(Icons.email, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
+              
+              
               errorText: snap.error),
         );
       },
@@ -146,13 +165,15 @@ Widget passwordTextField(LoginBloc bloc) => StreamBuilder<String>(
         obscureText: true,
         onChanged: bloc.changePassword,
         decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: 'Password',
+            labelStyle: TextStyle(color: Colors.white), 
             hintText: 'Password',
-            prefixIcon: Icon(Icons.vpn_key),
+            prefixIcon: Icon(Icons.vpn_key, color: Colors.white,),
             errorText: snap.error,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)))
+            ),
       );
     });
     

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicalappfront/src/ui/ui_consultar.dart';
 import 'ui/ui_login.dart';
+import 'ui/ui_consultarcita.dart';
 import 'package:medicalappfront/src/blocs/authorization_bloc.dart';
 
 class App extends StatelessWidget {
@@ -18,9 +19,9 @@ class App extends StatelessWidget {
         stream: authBloc.isSessionValid,
         builder: (context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData && snapshot.data) {
-            return HomeScreen();
+            return BottomNavBar();
           }
-          return HomePage();
+          return HomeScreen();
         });
   }
 }

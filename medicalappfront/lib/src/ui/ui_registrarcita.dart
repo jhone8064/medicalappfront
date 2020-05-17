@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:medicalappfront/src/blocs/Registrar_bloc.dart';
+import 'package:medicalappfront/src/blocs/Registrarcita_bloc.dart';
 import 'Animation/FadeAnimation.dart';
 
-class Registrar extends StatelessWidget {
-  final RegistrarBloc _registrarBloc= RegistrarBloc();
+class RegistrarCita extends StatelessWidget {
+  final RegistrarCitaBloc _registrarCitaBloc = RegistrarCitaBloc();
 
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromRGBO(143, 148, 251, 2),
       appBar: new AppBar(
-        title: Text('Pagina de registrar paciente'),
+        title: Text('Pagina de registrar citas medicas'),
       ),
       body: Container(
           child: SingleChildScrollView(
               child: Column(
         children: <Widget>[
           Container(
-            height: 250,
+            height: 200,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/images/background.png'),
@@ -29,10 +29,10 @@ class Registrar extends StatelessWidget {
                     child: FadeAnimation(
                         1.6,
                         Container(
-                          margin: EdgeInsets.only(top: 50),
+                          margin: EdgeInsets.only(top: 100),
                           child: Center(
                             child: Text(
-                              "Registrar paciente",
+                              "Registrar citas",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 40,
@@ -43,7 +43,7 @@ class Registrar extends StatelessWidget {
                   ),
                   Positioned(
                     right: 167,
-                    top: 10,
+                    top: 2,
                     width: 80,
                     height: 150,
                     child: FadeAnimation(
@@ -53,24 +53,24 @@ class Registrar extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                               image: DecorationImage(
                                   image:
-                                      AssetImage('assets/images/logo3.png'))),
+                                      AssetImage('assets/images/regis2.png'))),
                         )),
                   ),
               ],
             ),
           ),
           SizedBox(height: 20.0),
-          cedulaTextField(_registrarBloc),
+          cedulaTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          nombresTextField(_registrarBloc),
+          telefonoTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          apellidosTextField(_registrarBloc),
+          motivoTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          usernameTextField(_registrarBloc),
+          fechaTextField(_registrarCitaBloc),
           SizedBox(height: 25.0),
-          passwordTextField(_registrarBloc),
-          SizedBox(height: 15.0),
-          registrarButton(_registrarBloc, context),
+          //horaTextField(_registrarCitaBloc),
+          //SizedBox(height: 25.0),
+          registrarButton(_registrarCitaBloc, context),
           SizedBox(height: 15.0)          
         ],
       )
@@ -81,7 +81,7 @@ class Registrar extends StatelessWidget {
   }
 }
 
-Widget cedulaTextField(RegistrarBloc bloc) => StreamBuilder<String>(
+Widget cedulaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
       stream: bloc.cedula,
       builder: (context, snap) {
         return TextField(
@@ -101,19 +101,39 @@ Widget cedulaTextField(RegistrarBloc bloc) => StreamBuilder<String>(
       },
     );
 
-Widget nombresTextField(RegistrarBloc bloc) => StreamBuilder<String>(
-      stream: bloc.nombres,
+Widget telefonoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.numero,
+      builder: (context, snap) {
+        return TextField(
+          keyboardType: TextInputType.number,
+          onChanged: bloc.changeNumero,
+          decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              labelText: 'Ingrese su numero telefonico',
+              labelStyle: TextStyle(color: Colors.white),
+              hintText: 'Telefono',
+              prefixIcon: Icon(Icons.phone, color: Colors.white),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
+              ),
+              errorText: snap.error),
+        );
+      },
+    );
+
+Widget motivoTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.motivo,
       builder: (context, snap) {
         return TextField(
           keyboardType: TextInputType.text,
-          onChanged: bloc.changeNombre,
+          onChanged: bloc.changeMotivo,
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: 'Ingrese sus Nombres',
+              labelText: 'Ingrese el motivo de la cita medica',
               labelStyle: TextStyle(color: Colors.white),
-              hintText: 'Nombres',
-              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              hintText: 'Motivo',
+              prefixIcon: Icon(Icons.local_hospital, color: Colors.white),
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
@@ -121,19 +141,19 @@ Widget nombresTextField(RegistrarBloc bloc) => StreamBuilder<String>(
       },
     );
 
-Widget apellidosTextField(RegistrarBloc bloc) => StreamBuilder<String>(
-      stream: bloc.apellidos,
+    Widget fechaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.fecha,
       builder: (context, snap) {
         return TextField(
           keyboardType: TextInputType.text,
-          onChanged: bloc.changeApellidos,
+          onChanged: bloc.changeFecha,
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: 'Ingrese sus Apellidos',
+              labelText: 'Ingrese la fecha de la cita',
               labelStyle: TextStyle(color: Colors.white),
-              hintText: 'Apellidos',
-              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
+              hintText: 'Fecha',
+              prefixIcon: Icon(Icons.date_range, color: Colors.white),
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
@@ -141,58 +161,42 @@ Widget apellidosTextField(RegistrarBloc bloc) => StreamBuilder<String>(
       },
     );
 
-Widget usernameTextField(RegistrarBloc bloc) => StreamBuilder<String>(
-      stream: bloc.username,
+   /* Widget horaTextField(RegistrarCitaBloc bloc) => StreamBuilder<String>(
+      stream: bloc.hora,
       builder: (context, snap) {
         return TextField(
-          keyboardType: TextInputType.emailAddress,
-          onChanged: bloc.changeUsername,
+          keyboardType: TextInputType.text,
+          onChanged: bloc.changeHora,
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              labelText: 'Email',
+              labelText: 'Ingrese la hora de la cita medica',
               labelStyle: TextStyle(color: Colors.white),
-              hintText: 'user@correo.com',
-              prefixIcon: Icon(Icons.email, color: Colors.white),
+              hintText: 'Hora',
+              prefixIcon: Icon(Icons.hourglass_empty, color: Colors.white),
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
               ),
               errorText: snap.error),
         );
       },
-    );
+    );*/
 
-Widget passwordTextField(RegistrarBloc bloc) => StreamBuilder<String>(
-    stream: bloc.password,
-    builder: (context, snap) {
-      return TextField(
-        obscureText: true,
-        onChanged: bloc.changePassword,
-        decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            labelText: 'Password',
-            labelStyle: TextStyle(color: Colors.white),
-            hintText: 'Password',
-            prefixIcon: Icon(Icons.vpn_key, color: Colors.white),
-            errorText: snap.error,
-            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)))
-                ),
-      );
-    });
 
-Widget registrarButton(RegistrarBloc bloc, BuildContext context) => StreamBuilder<bool>(
+
+
+Widget registrarButton(RegistrarCitaBloc bloc, BuildContext context) => StreamBuilder<bool>(
       stream: bloc.submitValid,
       builder: (context, snap) {
         return Material(
           elevation: 5.0,
           borderRadius: BorderRadius.circular(30.0),
-          color: Color.fromRGBO(143, 148, 251, 2),
+          color: Colors.black,
           child: MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: () => bloc.submit(context),
             child: Text(
-              "Registrar",
+              "Registrar cita",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white),
             ),
