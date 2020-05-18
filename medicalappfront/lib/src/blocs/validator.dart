@@ -48,14 +48,14 @@ class Validators {
     }
   });
 
- /* final validateDate = StreamTransformer<DateTime, DateTime>.fromHandlers(
+  final validateDate = StreamTransformer<DateTime, DateTime>.fromHandlers(
     handleData: (fecha, skin) {
-      if(fecha == true){
+      /*if(fecha == true){
         skin.add(fecha);
       }else{
         skin.addError("error al ingresar la fecha");
-      }
+      }*/
     }
-  );*/
+  );
 
 }

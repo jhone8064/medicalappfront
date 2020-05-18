@@ -7,20 +7,14 @@ import 'Animation/FadeAnimation.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => Consultas();
+  Consultas createState() => Consultas();
 }
 
 class Consultas extends State<HomeScreen> {
-  static ConsultaBloc bloc = ConsultaBloc();
-
-  @override
-  initState() {
-    super.initState();
-    bloc.getInfoUser();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
+    ConsultaBloc bloc = ConsultaBloc();
     bloc.getInfoUser();
     return Scaffold(
       backgroundColor: Color.fromRGBO(143, 148, 251, 2),

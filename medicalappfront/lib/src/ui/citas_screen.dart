@@ -38,7 +38,7 @@ class ProductsScreen extends StatelessWidget {
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            labelText: snapshot.data.lstCitas[index].fecha,
+            labelText: snapshot.data.lstCitas[index].fecha.toString(),
             labelStyle: TextStyle(color: Colors.white),
             prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
             border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)),

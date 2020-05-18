@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:medicalappfront/src/blocs/authorization_bloc.dart';
 import 'package:medicalappfront/src/models/citasList.dart';
 import 'package:medicalappfront/src/resources/repository.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 
 class CitasBloc {
   final _repository = Repository();
@@ -12,10 +12,8 @@ class CitasBloc {
 
   getInfoCitas() async {
     String accesToken = await authBloc.getId();    
-    debugPrint("llega " + accesToken);
     CitasList cita = await _repository.fetchAllCitas(accesToken);
-    _cita.sink.add(cita);
-    debugPrint("llega " + cita.lstCitas.toString());
+    _cita.sink.add(cita);    
     return cita;
   }
 

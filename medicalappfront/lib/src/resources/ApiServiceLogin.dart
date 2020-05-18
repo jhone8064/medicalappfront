@@ -58,11 +58,13 @@ class ApiLogin {
  Future<ApiResponse> registrarCita(UserRegisCita userRegisCita) async {
     var body = jsonEncode(userRegisCita.toJson());
     Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegisCita);
-   
+   debugPrint('LLEGA 1.1');
     var res = await client.post(uri,
         headers: {HttpHeaders.contentTypeHeader: Constants.contentTypeJson},
         body: body);
+        debugPrint('LLEGA 1.2');
     debugPrint(res.body);
+    debugPrint('LLEGA 1.3 ' + res.statusCode.toString());
     if (res.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
       _apiResponse = ApiResponse.fromJson({'data': res.body});
