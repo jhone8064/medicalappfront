@@ -139,12 +139,13 @@ Widget usernameTextField(LoginBloc bloc) => StreamBuilder<String>(
       stream: bloc.username,
       builder: (context, snap) {
         return TextField(
+          
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
           keyboardType: TextInputType.emailAddress,
           onChanged: bloc.changeUsername,
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               labelText: 'Email',
               labelStyle: TextStyle(color: Colors.white),
               hintText: 'user@correo.com',
@@ -165,14 +166,14 @@ Widget passwordTextField(LoginBloc bloc) => StreamBuilder<String>(
         obscureText: true,
         onChanged: bloc.changePassword,
         decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(50)), borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: 'Password',
             labelStyle: TextStyle(color: Colors.white), 
             hintText: 'Password',
             prefixIcon: Icon(Icons.vpn_key, color: Colors.white,),
             errorText: snap.error,
-            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)))
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(50)))
             ),
       );
     });

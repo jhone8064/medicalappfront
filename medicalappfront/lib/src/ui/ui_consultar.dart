@@ -56,7 +56,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: <Widget>[
             Icon(Icons.add, size: 30),
             Icon(Icons.search, size: 30),
-            Icon(Icons.search, size: 30),
+            Icon(Icons.calendar_today, size: 30),
             Icon(Icons.exit_to_app, size: 30),
             
           ],

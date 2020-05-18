@@ -14,8 +14,7 @@ class CitasBloc {
     String accesToken = await authBloc.getId();    
     debugPrint("llega " + accesToken);
     CitasList cita = await _repository.fetchAllCitas(accesToken);
-    _cita.sink.add(cita);
-    debugPrint("llega " + cita.lstCitas.toString());
+    _cita.sink.add(cita);    
     return cita;
   }
 
