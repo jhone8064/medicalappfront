@@ -7,8 +7,7 @@ import 'package:flutter/foundation.dart';
 
 class CitasProvider {
   Client client = Client();
-  CitasList _citas;
-  
+  CitasList _citas;  
 
   Future<CitasList> infoCitas(String id) async {   
     debugPrint("LLEGA 2 " + 'https://'+Constants.urlAuthority+'/consultarCitas?cedula='+id); 

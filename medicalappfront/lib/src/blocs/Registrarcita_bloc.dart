@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:medicalappfront/src/models/model_regiscita.dart';
-import 'package:medicalappfront/src/ui/ui_login.dart';
+//import 'package:medicalappfront/src/ui/ui_login.dart';
+//import 'package:medicalappfront/src/ui/ui_registrarcita.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:medicalappfront/src/blocs/validator.dart';
 import 'package:medicalappfront/src/models/apiResponse.dart';
@@ -11,7 +12,7 @@ import 'package:medicalappfront/src/blocs/authorization_bloc.dart';
 import 'package:flutter/material.dart';
 
 class RegistrarCitaBloc extends Validators {
-  Repository repository = Repository();
+  final _repository = Repository();
 
   final BehaviorSubject _cedulaController = BehaviorSubject<String>();
   final BehaviorSubject _numeroController = BehaviorSubject<String>();
@@ -31,6 +32,7 @@ class RegistrarCitaBloc extends Validators {
   Stream<String> get motivo => _motivoController.stream.transform(validateApellidos);
   Stream<String> get fecha => _fechaController.stream.transform(validateNombres);
   //Stream<String> get hora => _horaController.stream.transform(validateApellidos);
+  DateTime fechaHora = DateTime.now();// => _fechaController.transform(validateDate);
   
   Stream<bool> get submitValid => Rx.combineLatest4(
       cedula,
@@ -46,16 +48,16 @@ class RegistrarCitaBloc extends Validators {
     final validCedula = _cedulaController.value;
     final validNumero = _numeroController.value;
     final validMotivo = _motivoController.value;
-    final validFecha = _fechaController.value;
+    //final validFecha = _fechaController.value;
     //final validHora = _horaController.value;
-    final validid = "-M6gprGSgNuueSjirrLL";     
+    //final validid = authBloc.getId();     
 
     UserRegisCita user = new UserRegisCita(
         cedula: validCedula,
         numero: validNumero,
         motivo: validMotivo,
-        fecha: validFecha,
-        id: validid
+        //fecha: validFecha,
+        id: "",
        // hora: validHora
         );
     //_loadingData.sink.add(true);
@@ -63,30 +65,16 @@ class RegistrarCitaBloc extends Validators {
   }
 
   registrarCita(UserRegisCita authRequest, BuildContext context) async {
-    ApiResponse apiresponse = await repository.registrarCita(authRequest);
+    authRequest.id = await authBloc.getId();
+    authRequest.fecha = fechaHora.toString();
+    ApiResponse apiresponse = await _repository.registrarCita(authRequest);
 
     //_loadingData.sink.add(false);
     if (apiresponse.data != null) {
-      debugPrint(apiresponse.data);
-      /*AuthResponse authResponse =
-          AuthResponse.fromJson(jsonDecode(apiresponse.data));
-      if (authResponse.accessToken != null &&
-          authResponse.accessToken.length > 0) {
-        authBloc.openSession(authResponse);
-      }*/
+      debugPrint(apiresponse.data);      
       final snackBar = SnackBar(
-        content: Text('Cita Medica Creada correctamente'),
-        action: SnackBarAction(
-          label: 'Aceptar',          
-          onPressed: () {
-            Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => HomePage()));
-          },
-        ),
-      );
-
+        content: Text('Cita Medica Creada correctamente'));
       Scaffold.of(context).showSnackBar(snackBar);
-
     } else {
       debugPrint('Error');
       final snackBar =
