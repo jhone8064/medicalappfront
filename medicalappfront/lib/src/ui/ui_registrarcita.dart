@@ -251,3 +251,4 @@ Widget registrarButton(RegistrarCitaBloc bloc, BuildContext context) =>
         );
       },
     );
+
