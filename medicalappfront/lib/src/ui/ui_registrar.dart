@@ -200,5 +200,3 @@ Widget registrarButton(RegistrarBloc bloc, BuildContext context) => StreamBuilde
         );
       },
     );
-
-

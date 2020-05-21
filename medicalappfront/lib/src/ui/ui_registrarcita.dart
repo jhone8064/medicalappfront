@@ -184,10 +184,10 @@ final df = new DateFormat('dd-MM-yyyy hh:mm a');
 Future<Null> _selectDate(BuildContext context, RegistrarCitaBloc bloc) async {
   final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: bloc.fechaHora,
+      initialDate: firstDate,
       firstDate: firstDate,
       lastDate: DateTime(2101),
-      cancelText: "Cancelar",
+    //  cancelText: "Cancelar",
       builder: (context, child) {
         return Theme(
           data: ThemeData(
@@ -251,3 +251,4 @@ Widget registrarButton(RegistrarCitaBloc bloc, BuildContext context) =>
         );
       },
     );
+

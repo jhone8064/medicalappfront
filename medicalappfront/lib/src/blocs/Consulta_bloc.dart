@@ -1,6 +1,3 @@
-//import 'dart:convert';
-
-
 import 'package:rxdart/rxdart.dart';
 import 'package:medicalappfront/src/blocs/authorization_bloc.dart';
 //import 'package:front_hemosugar/src/models/model_user.dart';
