@@ -23,4 +23,18 @@ class CitasProvider {
     }
     return _citas;
   }
+
+  Future<CitasList> infoCitasFecha(String id, String fecha) async {       
+    var res = await client.get('https://'+Constants.urlAuthority+'/consultarCitas?id='+id+'&fecha=' + fecha);  
+   
+    debugPrint(res.body);
+    if (res.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+
+      _citas = CitasList.fromJson(jsonDecode(res.body));
+    } else {
+      print(res.body);
+    }
+    return _citas;
+  }
 }
