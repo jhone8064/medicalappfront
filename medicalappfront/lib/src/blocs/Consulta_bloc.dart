@@ -16,7 +16,7 @@ class ConsultaBloc extends Validators {
     String id = await authBloc.getId();
     UserRegisData user = await _repository.infoUser(id);    
     _user.sink.add(user);
-    return user;
+    //return user;
   } 
 
   dispose() {

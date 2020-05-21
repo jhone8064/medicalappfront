@@ -12,9 +12,9 @@ class CitasBloc {
 
   getInfoCitas() async {
     String accesToken = await authBloc.getId();    
-    CitasList cita = await _repository.fetchAllCitas(accesToken);
+    CitasList cita = await _repository.fetchAllCitas(accesToken);    
     _cita.sink.add(cita);    
-    return cita;
+    //return cita;
   }
 
   dispose() {

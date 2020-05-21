@@ -7,14 +7,19 @@ import 'Animation/FadeAnimation.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  Consultas createState() => Consultas();
+  _Consultas createState() => _Consultas();
 }
 
-class Consultas extends State<HomeScreen> {
- 
+class _Consultas extends State<HomeScreen> {
+  ConsultaBloc bloc = ConsultaBloc();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ConsultaBloc bloc = ConsultaBloc();
     bloc.getInfoUser();
     return Scaffold(
       backgroundColor: Color.fromRGBO(143, 148, 251, 2),
@@ -34,36 +39,36 @@ class Consultas extends State<HomeScreen> {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                    child: FadeAnimation(
-                        1.6,
-                        Container(
-                          margin: EdgeInsets.only(top: 50),
-                          child: Center(
-                            child: Text(
-                              "Consultar Paciente",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                  child: FadeAnimation(
+                      1.6,
+                      Container(
+                        margin: EdgeInsets.only(top: 50),
+                        child: Center(
+                          child: Text(
+                            "Consultar Paciente",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
                           ),
-                        )),
-                  ),
-                  Positioned(
-                    right: 167,
-                    top: 2,
-                    width: 80,
-                    height: 150,
-                    child: FadeAnimation(
-                        1.5,
-                        Container(
-                          decoration: BoxDecoration(
+                        ),
+                      )),
+                ),
+                Positioned(
+                  right: 167,
+                  top: 2,
+                  width: 80,
+                  height: 150,
+                  child: FadeAnimation(
+                      1.5,
+                      Container(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/buscar2.png'))),
-                        )),
-                  ),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/buscar2.png'))),
+                      )),
+                ),
               ],
             ),
           ),
@@ -76,7 +81,6 @@ class Consultas extends State<HomeScreen> {
           SizedBox(height: 25.0),
           usernameTextField(bloc),
           SizedBox(height: 25.0)
-          
         ],
       ))),
     );
@@ -89,12 +93,15 @@ Widget cedulaTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: snap.data.cedula,
             labelStyle: TextStyle(color: Colors.white),
             prefixIcon: Icon(Icons.perm_identity, color: Colors.white),
-            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
             errorText: snap.error,
             alignLabelWithHint: true,
@@ -109,12 +116,16 @@ Widget nombresTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: snap.data.nombres,
-              labelStyle: TextStyle(color: Colors.white),              
-              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)),
+              labelStyle: TextStyle(color: Colors.white),
+              prefixIcon:
+                  Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               errorText: snap.error),
         );
@@ -127,13 +138,16 @@ Widget apellidosTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: snap.data.apellidos,
-              labelStyle: TextStyle(color: Colors.white),              
-              prefixIcon: Icon(Icons.supervised_user_circle, color: Colors.white),
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
-              ),
+              labelStyle: TextStyle(color: Colors.white),
+              prefixIcon:
+                  Icon(Icons.supervised_user_circle, color: Colors.white),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
               errorText: snap.error),
         );
       },
@@ -145,17 +159,16 @@ Widget usernameTextField(ConsultaBloc bloc) => StreamBuilder<UserRegisData>(
         return TextField(
           readOnly: true,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Colors.white)),
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               labelText: snap.data.username,
-              labelStyle: TextStyle(color: Colors.white),              
+              labelStyle: TextStyle(color: Colors.white),
               prefixIcon: Icon(Icons.email, color: Colors.white),
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
-              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
               errorText: snap.error),
         );
       },
     );
-
-
-
