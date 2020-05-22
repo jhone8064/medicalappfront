@@ -56,7 +56,9 @@ class ApiLogin {
 
  
  Future<ApiResponse> registrarCita(UserRegisCita userRegisCita) async {
+   debugPrint('registrarCita 1.1');
     var body = jsonEncode(userRegisCita.toJson());
+    debugPrint('registrarCita 1.2');
     Uri uri = Uri.https(Constants.urlAuthority, Constants.urlRegisCita);
    debugPrint('LLEGA 1.1');
     var res = await client.post(uri,

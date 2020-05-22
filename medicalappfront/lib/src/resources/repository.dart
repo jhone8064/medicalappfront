@@ -22,4 +22,7 @@ class Repository {
 
   Future<CitasList> fetchAllCitas(String accesToken) =>
       citasProvider.infoCitas(accesToken);
+
+  Future<CitasList> fetchAllCitasFecha(String accesToken, String fecha) =>
+      citasProvider.infoCitasFecha(accesToken, fecha);
 }

@@ -65,10 +65,13 @@ class RegistrarCitaBloc extends Validators {
   }
 
   registrarCita(UserRegisCita authRequest, BuildContext context) async {
+    debugPrint("registrarCita");
     authRequest.id = await authBloc.getId();
-    authRequest.fecha = fechaHora.toString();
+    debugPrint("registrarCita " + fechaHora.toString());
+    authRequest.fecha = fechaHora;
+    debugPrint("registrarCita2 " + fechaHora.toString());
     ApiResponse apiresponse = await _repository.registrarCita(authRequest);
-
+debugPrint("registrarCita3 " + fechaHora.toString());
     //_loadingData.sink.add(false);
     if (apiresponse.data != null) {
       debugPrint(apiresponse.data);      
