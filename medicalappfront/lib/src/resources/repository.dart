@@ -25,4 +25,6 @@ class Repository {
 
   Future<CitasList> fetchAllCitasFecha(String accesToken, String fecha) =>
       citasProvider.infoCitasFecha(accesToken, fecha);
+
+  Future<ApiResponse> cancelarCita(UserRegisCita userRegisCita) => apiLogin.cancelarCita(userRegisCita);
 }

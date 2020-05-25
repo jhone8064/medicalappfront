@@ -3,6 +3,7 @@ import 'package:medicalappfront/src/ui/ui_registrar.dart';
 import 'Animation/FadeAnimation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:medicalappfront/src/blocs/bloc_login.dart';
+import 'package:medicalappfront/src/providers/puch_notification_providers.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,11 +12,36 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   LoginBloc bloc;
+  PushNotificationProviders pushProvider;
 
   @override
   void initState() {
     super.initState();
     bloc = LoginBloc();
+
+    pushProvider = new PushNotificationProviders();
+    pushProvider.initNotifications();
+
+    pushProvider.mensajes.listen((event) {
+      print('pushProvider ' + event);
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: new Text("Cita"),
+              content: new Text(event),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ]);
+        },
+      );
+    });
   }
 
   @override
@@ -83,7 +109,8 @@ class HomePageState extends State<HomePage> {
                         1.5,
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
                               image: DecorationImage(
                                   image:
                                       AssetImage('assets/images/logo4.png'))),
@@ -113,7 +140,7 @@ class HomePageState extends State<HomePage> {
             SizedBox(height: 25.0),
             passwordTextField(bloc),
             SizedBox(height: 25.0),
-            submitButton(bloc, context),
+            submitButton(bloc, context, pushProvider),
             SizedBox(height: 15.0),
             cargarDatos(bloc),
             SizedBox(height: 15.0),
@@ -139,21 +166,21 @@ Widget usernameTextField(LoginBloc bloc) => StreamBuilder<String>(
       stream: bloc.username,
       builder: (context, snap) {
         return TextField(
-          
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
           keyboardType: TextInputType.emailAddress,
           onChanged: bloc.changeUsername,
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30)), borderSide: BorderSide(color: Colors.white)),
-              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(color: Colors.white)),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
               labelText: 'Email',
               labelStyle: TextStyle(color: Colors.white),
               hintText: 'user@correo.com',
               prefixIcon: Icon(Icons.email, color: Colors.white),
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))
-              ),
-              
-              
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
               errorText: snap.error),
         );
       },
@@ -166,21 +193,29 @@ Widget passwordTextField(LoginBloc bloc) => StreamBuilder<String>(
         obscureText: true,
         onChanged: bloc.changePassword,
         decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(50)), borderSide: BorderSide(color: Colors.white)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                borderSide: BorderSide(color: Colors.white)),
             contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             labelText: 'Password',
-            labelStyle: TextStyle(color: Colors.white), 
+            labelStyle: TextStyle(color: Colors.white),
             hintText: 'Password',
-            prefixIcon: Icon(Icons.vpn_key, color: Colors.white,),
-            errorText: snap.error,
-            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(50)))
+            prefixIcon: Icon(
+              Icons.vpn_key,
+              color: Colors.white,
             ),
+            errorText: snap.error,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50)))),
       );
     });
-    
-Widget submitButton(LoginBloc bloc, BuildContext context) => StreamBuilder<bool>(
+
+Widget submitButton(LoginBloc bloc, BuildContext context,
+        PushNotificationProviders pushProvider) =>
+    StreamBuilder<bool>(
       stream: bloc.submitValid,
       builder: (context, snap) {
+        bloc.setToken(pushProvider.tok);
         return Material(
           elevation: 5.0,
           borderRadius: BorderRadius.circular(30.0),

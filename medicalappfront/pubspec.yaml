@@ -33,6 +33,7 @@ dependencies:
   table_calendar: ^2.2.3
   analog_time_picker: ^0.0.2
   flutter_rounded_date_picker: ^1.0.0 
+  firebase_messaging: ^6.0.15
   #intl: ^0.16.1
 
 dev_dependencies:

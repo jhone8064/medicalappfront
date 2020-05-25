@@ -18,6 +18,9 @@ class Constants {
    //Api Registrar
   static const String urlRegisCita = pathBase + "registrarCita";
 
+  //Api Registrar
+  static const String urlEditarCita = pathBase + "editarCita";
+
   //ContentTypeHeader
   static const String contentTypeJson = "application/json";
 

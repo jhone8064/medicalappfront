@@ -37,8 +37,18 @@ class LoginBloc extends Validators {
     login(user, context);
   }
 
+  String tok;
+
+  void setToken(String token){
+    print("---------------------------------");
+    print(token);
+    tok = token;
+  }
+
   login(UserData authRequest, BuildContext context) async {
+    authRequest.token = tok;
     ApiResponse apiresponse = await repository.login(authRequest);
+    print('');
     _loadingData.sink.add(false);
    
     if (apiresponse.data != null) {
