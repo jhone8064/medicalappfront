@@ -5,6 +5,8 @@ import 'package:medicalappfront/src/models/citasList.dart';
 import 'package:medicalappfront/src/ui/Animation/FadeAnimation.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:medicalappfront/src/models/model_regiscita.dart';
+import 'package:intl/intl.dart';
+import 'package:medicalappfront/src/providers/puch_notification_providers.dart';
 
 class ProductsScreen extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Map<DateTime, List<UserRegisCita>> _events;
   List<UserRegisCita> _selectedEvents;
   CitasBloc bloc = CitasBloc();
+  final df = new DateFormat('dd-MM-yyyy hh:mm a');
 
   @override
   void initState() {
@@ -23,6 +26,30 @@ class _ProductsScreenState extends State<ProductsScreen> {
     _controller = CalendarController();
     _events = {};
     _selectedEvents = [];
+
+    final pushProvider = new PushNotificationProviders();
+    pushProvider.initNotifications();
+
+    pushProvider.mensajes.listen((event) {
+      print('pushProvider ' + event);
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: new Text("Cita"),
+              content: new Text(event),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ]);
+        },
+      );
+    });
   }
 
   Map<DateTime, List<UserRegisCita>> _groupEvents(
@@ -42,9 +69,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     bloc.getInfoCitas();
     return Scaffold(
       backgroundColor: Color.fromRGBO(143, 148, 251, 2),
-      appBar: AppBar(
-        title: Text('Consulta de citas'),
-      ),
       body: StreamBuilder<CitasList>(
           stream: bloc.infoCitas,
           builder: (context, snapshot) {
@@ -111,7 +135,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                     onDaySelected: (date, events) {
                       setState(() {
-                        _selectedEvents = events;
+                        print(events.length);
+                        if (events.length == 0) {
+                          _selectedEvents = [];
+                        } else {
+                          _selectedEvents = events;
+                        }
                       });
                     },
                     builders: CalendarBuilders(
@@ -138,8 +167,62 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     ),
                     calendarController: _controller,
                   ),
-                  ..._selectedEvents.map((event) => ListTile(
-                        title: Text(event.fecha.toString()),
+                  ..._selectedEvents.map((event) => Container(
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            border: Border.all(width: 0.8),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(15),
+                                bottomLeft: Radius.circular(10)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black45,
+                                offset: Offset(6, 6),
+                                blurRadius: 3,
+                              )
+                            ]),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: ListTile(
+                          title: Text(df.format(event.fecha).toString() +
+                              '    ' +
+                              event.strEstado()),
+                          enabled: event.isEnable(),
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context1) {
+                              return AlertDialog(
+                                title: new Text("Cita"),
+                                content: new Text('Movito: ' +
+                                    event.motivo +
+                                    '\n' +
+                                    'Fecha: ' +
+                                    df.format(event.fecha).toString() +
+                                    '\n' +
+                                    'Estado: ' +
+                                    event.strEstado()),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Cerrar"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    color: Colors.red,
+                                    textColor: Colors.white,
+                                    disabledColor: Colors.grey,
+                                    child: new Text("Cancelar Cita"),
+                                    onPressed: () {
+                                      bloc.cancelarCita(context, event);                                      
+                                      bloc.getInfoCitas();
+                                    },
+                                  )
+                                ],
+                              );
+                            },
+                          ),
+                        ),
                       )),
                 ],
               ),

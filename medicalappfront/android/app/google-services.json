@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "754837310871",
+    "firebase_url": "https://quiet-vertex-143201.firebaseio.com",
+    "project_id": "quiet-vertex-143201",
+    "storage_bucket": "quiet-vertex-143201.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754837310871:android:669b37560896aa9de208d2",
+        "android_client_info": {
+          "package_name": "com.example.medicalappfront"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754837310871-eqcvbs2tgphe2o4rga1p39e9u8sbpoed.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicalappfront",
+            "certificate_hash": "6a46cb20ee2e53d4c47d89b0d945e4b97941b8ef"
+          }
+        },
+        {
+          "client_id": "754837310871-vsabggcse8qtgvhpqvkir15b0d47t2gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYpx0OkOX8nOdiMAj627YtzBWouMNg55w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754837310871-vsabggcse8qtgvhpqvkir15b0d47t2gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

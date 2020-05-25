@@ -16,10 +16,7 @@ class _RegistrarCita extends State<RegistrarCita> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(143, 148, 251, 2),
-      appBar: new AppBar(
-        title: Text('Pagina de registrar citas medicas'),
-      ),
+      backgroundColor: Color.fromRGBO(143, 148, 251, 2),     
       body: Container(
           child: SingleChildScrollView(
               child: Column(
